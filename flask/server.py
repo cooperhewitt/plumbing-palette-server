@@ -1,21 +1,18 @@
 #!/usr/bin/env python
 
-import os
-import os.path
 import logging
 
 import flask
 from flask_cors import cross_origin 
 from werkzeug.contrib.fixers import ProxyFix
 
-import cooperhewitt.swatchbook
 import roygbiv
 
 try:
-    # https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-shannon
-    import cooperhewitt.roboteyes.colours as something
+    # https://github.com/cooperhewitt/py-cooperhewitt-swatchbook
+    import cooperhewitt.swatchbook as swatchbook
 except Exception, e:
-    import something
+    import swatchbook
 
 try:
     # https://github.com/cooperhewitt/py-cooperhewitt-flask

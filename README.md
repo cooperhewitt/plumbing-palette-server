@@ -67,6 +67,8 @@ _Pending a proper `setup.py` file._
 _The following are required but are available as libraries local to the server itself if not already pre-installed._
 
 * [cooperhewitt.flask.http_pony](https://github.com/cooperhewitt/py-cooperhewitt-flask)
+* [cooperhewitt.swatchbook](https://github.com/cooperhewitt/py-cooperhewitt-swatchbook)
+* [RoyGBiv](https://pypi.python.org/pypi/RoyGBiv/)
 
 ## To do:
 
