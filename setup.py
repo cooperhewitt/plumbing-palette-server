@@ -8,19 +8,17 @@ setup(name='plumbing-palette-server',
       version='0.1',
       description='',
       author='Cooper Hewitt Smithsonian Design Museum',
-      url='https://github.com/cooperhewitt/py-cooperhewitt-swatchbook',
+      url='https://github.com/cooperhewitt/plumbing-palette-server',
       requires=[
           'flask',
           # 'flask-cors',
           'roygbiv',
-          'cooperhewitt.flask',
-          'cooperhewitt.swatchbook'
+      ],
+      install_requires = [
+          'https://github.com/cooperhewitt/py-cooperhewitt-flask/archive/v0.1.tar.gz',
+          'https://github.com/cooperhewitt/py-cooperhewitt-swatchbook/archive/v0.2.tar.gz',
       ],
       packages=[],
       scripts=[],
-      dependency_links = [
-          'https://github.com/cooperhewitt/py-cooperhewitt-swatchbook/releases',
-          'https://github.com/cooperhewitt/py-cooperhewitt-flask/releases',
-      ],
       download_url='',
       license='BSD')
