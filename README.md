@@ -17,6 +17,42 @@ A simple HTTP pony server for doing colour extraction. THIS IS NOT READY FOR USE
 		"stat": "ok"
 	}
 
+### GET /extract/roygbiv/<REFERENCE>
+
+	curl -X GET 'http://localhost:5000/extract/roygbiv/css3?file=test.jpg'
+
+	{
+	  "average": {
+	    "closest": "#808080", 
+	    "color": "#8d7d73"
+	  }, 
+	  "palette": [
+	    {
+	      "closest": "#e9967a", 
+	      "color": "#d99e82"
+	    }, 
+	    {
+	      "closest": "#d3d3d3", 
+	      "color": "#ddd4c9"
+	    }, 
+	    {
+	      "closest": "#800000", 
+	      "color": "#4d2415"
+	    }, 
+	    {
+	      "closest": "#cd5c5c", 
+	      "color": "#a96a4f"
+	    }, 
+	    {
+	      "closest": "#2f4f4f", 
+	      "color": "#343136"
+	    }
+	  ], 
+	  "reference-closest": "css3"
+	}
+
+### POST /extract/roygbiv/<REFERENCE>
+
 ## Config
 
 `plumbing-palette-server` uses utility functions exported by the
