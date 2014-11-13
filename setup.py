@@ -2,7 +2,7 @@
 
 # THIS DOES NOT WORK YET
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='plumbing-palette-server',
       version='0.1',
@@ -14,11 +14,17 @@ setup(name='plumbing-palette-server',
           # 'flask-cors',
           'roygbiv',
       ],
-      install_requires = [
+      dependency_links = [
           'https://github.com/cooperhewitt/py-cooperhewitt-flask/archive/v0.1.tar.gz',
           'https://github.com/cooperhewitt/py-cooperhewitt-swatchbook/archive/v0.2.tar.gz',
       ],
+      install_requires = [
+          'cooperhewitt.flask>=0.1',
+          'cooperhewitt.swatchbook>=0.1',
+      ],
       packages=[],
-      scripts=[],
+      scripts=[
+          'scripts/palette-server.py',
+      ],
       download_url='',
       license='BSD')
