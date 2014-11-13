@@ -14,11 +14,11 @@ setup(name='plumbing-palette-server',
           # 'flask-cors',
           'roygbiv',
       ],
-      dependency_links = [
-          'https://github.com/cooperhewitt/py-cooperhewitt-flask/archive/v0.1.tar.gz',
-          'https://github.com/cooperhewitt/py-cooperhewitt-swatchbook/archive/v0.2.tar.gz',
+      dependency_links=[
+          'https://github.com/cooperhewitt/py-cooperhewitt-flask/tarball/master#egg=cooperhewitt.flask-0.1',
+          'https://github.com/cooperhewitt/py-cooperhewitt-swatchbook/tarball/master#egg=cooperhewitt.swatchbook-0.2',
       ],
-      install_requires = [
+      install_requires=[
           'cooperhewitt.flask>=0.1',
           'cooperhewitt.swatchbook>=0.1',
       ],
