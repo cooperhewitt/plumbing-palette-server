@@ -1,0 +1,77 @@
+#!/bin/sh -e
+
+# Starts, stops, and restarts the event server
+# http://werxltd.com/wp/2012/01/05/simple-init-d-script-template/
+
+# To make sure this runs at startup, do:
+# update-rc.d palette-server.sh defaults
+
+# Adjust to taste
+PALETTE_SERVER_CONFIG='/usr/local/plumbing-palette-server/init.d/gunicorn-palette-server.cfg'
+
+GUNICORN=`which gunicorn`
+GUNICORN_OPTS="-c ${PALETTE_SERVER_CONFIG}"
+
+PIDFILE=/var/run/palette-server.pid
+
+case $1 in
+    debug)
+        echo "Starting palette server (in debug mode)"
+	echo sudo $GUNICORN $GUNICORN_OPTS server:app
+
+	sudo $GUNICORN $GUNICORN_OPTS server:app
+
+        ;;
+    start)
+
+        echo "Starting palette server"
+
+	PID=`exec sudo $GUNICORN $GUNICORN_OPTS server:app > /dev/null 2>&1 & echo $!`
+	echo "PID: ${PID}"
+
+        if [ -z $PID ]; then
+            printf "%s\n" "Fail"
+        else
+            echo $PID > $PIDFILE
+            printf "%s\n" "Ok"
+	    echo $PID
+        fi
+
+        ;;
+    stop)
+        echo "Stopping palette server"
+
+	printf "%-50s" "Stopping $NAME"
+            PID=`cat $PIDFILE`
+            cd $DAEMON_PATH
+        if [ -f $PIDFILE ]; then
+            kill -HUP $PID
+            printf "%s\n" "Ok"
+            rm -f $PIDFILE
+        else
+            printf "%s\n" "pidfile not found"
+        fi
+
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    status)
+        printf "%-50s" "Checking palette-server..."
+        if [ -f $PIDFILE ]; then
+            PID=`cat $PIDFILE`
+            if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
+                printf "%s\n" "Process dead but pidfile exists"
+            else
+                echo "Running"
+            fi
+        else
+            printf "%s\n" "Service not running"
+        fi
+	;;
+    *)
+        echo "Usage: $0 {debug|start|stop|restart|status}" >&2
+        exit 1
+        ;;
+esac

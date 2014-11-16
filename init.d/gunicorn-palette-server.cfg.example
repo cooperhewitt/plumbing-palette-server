@@ -1,0 +1,13 @@
+# http://gunicorn-docs.readthedocs.org/en/latest/configure.html#configuration-file
+
+import os
+import multiprocessing
+
+workers = multiprocessing.cpu_count() * 2 + 1
+worker_class = "egg:gunicorn#gevent"
+
+bind = '127.0.0.1:8229'
+chdir = '/usr/local/bin/'
+
+# not sure about the specifics yet...
+os.environ['PALETTE_SERVER_CONFIG'] = '/path/to/server.cfg'
