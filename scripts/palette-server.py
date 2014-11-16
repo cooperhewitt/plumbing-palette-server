@@ -9,17 +9,11 @@ from werkzeug.contrib.fixers import ProxyFix
 
 import roygbiv
 
-try:
-    # https://github.com/cooperhewitt/py-cooperhewitt-swatchbook
-    import cooperhewitt.swatchbook as swatchbook
-except Exception, e:
-    import swatchbook
+import cooperhewitt.swatchbook as swatchbook
+import cooperhewitt.flask.http_pony as http_pony
 
-try:
-    # https://github.com/cooperhewitt/py-cooperhewitt-flask
-    import cooperhewitt.flask.http_pony as http_pony
-except Exception, e:
-    import http_pony
+# not tested yet
+# app = http_pony.setup_flask_app(__name__)
 
 app = flask.Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
