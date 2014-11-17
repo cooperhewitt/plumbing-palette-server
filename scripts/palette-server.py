@@ -14,7 +14,7 @@ import cooperhewitt.flask.http_pony as http_pony
 # This replaces the normal
 # 'app = flask.Flask(__name__)' dance
 
-app = http_pony.setup_flask_app(__name__)
+app = http_pony.setup_flask_app('PALETTE_SERVER')
 
 @app.route('/ping', methods=['GET'])
 @cross_origin(methods=['GET'])
