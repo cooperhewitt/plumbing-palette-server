@@ -5,42 +5,16 @@ import logging
 
 import flask
 from flask_cors import cross_origin 
-from werkzeug.contrib.fixers import ProxyFix
 
 import roygbiv
 
 import cooperhewitt.swatchbook as swatchbook
 import cooperhewitt.flask.http_pony as http_pony
 
-# not tested yet
-# app = http_pony.setup_flask_app(__name__)
+# This replaces the normal
+# 'app = flask.Flask(__name__)' dance
 
-app = flask.Flask(__name__)
-app.wsgi_app = ProxyFix(app.wsgi_app)
-
-def before_first():
-
-    try:
-
-        if app.config.get('HTTP_PONY_INIT', None):
-            return True
-
-        if os.environ.get("PALETTE_SERVER_CONFIG"):
-            
-            cfg = os.environ.get("PALETTE_SERVER_CONFIG")
-            cfg = http_pony.update_app_config_from_file(app, cfg)
-
-            return True
-
-    except Exception, e:
-
-        logging.error("failed to load config file, because %s" % e)
-        flask.abort(500)
-
-    logging.error("missing config file")
-    flask.abort(500)
-
-app.before_first_request(before_first)
+app = http_pony.setup_flask_app(__name__)
 
 @app.route('/ping', methods=['GET'])
 @cross_origin(methods=['GET'])
