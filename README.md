@@ -2,9 +2,19 @@
 
 A simple HTTP pony server for doing colour extraction. THIS IS NOT READY FOR USE YET.
 
-## Setup
+## Install
 
-	python ./flask/server.py -c server.cfg
+	python ./setup.py install
+   
+## Example
+
+	python ./scripts/palette-server.py -c server.cfg
+	INFO:werkzeug: * Running on http://127.0.0.1:5000/
+
+Or:
+
+	setenv PALETTE_SERVER_CONFIG server.cfg
+	python ./scripts/palette-server.py
 	INFO:werkzeug: * Running on http://127.0.0.1:5000/
 
 ## Endpoints
