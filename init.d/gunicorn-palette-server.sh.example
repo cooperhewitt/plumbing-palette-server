@@ -4,7 +4,7 @@
 # http://werxltd.com/wp/2012/01/05/simple-init-d-script-template/
 
 # To make sure this runs at startup, do:
-# update-rc.d palette-server.sh defaults
+# update-rc.d gunicorn-palette-server.sh defaults
 
 # Adjust to taste
 PALETTE_SERVER_CONFIG='/usr/local/plumbing-palette-server/init.d/gunicorn-palette-server.cfg'
@@ -26,7 +26,7 @@ case $1 in
 
         echo "Starting palette server"
 
-	PID=`exec sudo $GUNICORN $GUNICORN_OPTS server:app > /dev/null 2>&1 & echo $!`
+	PID=`exec sudo $GUNICORN $GUNICORN_OPTS palette-server:app > /dev/null 2>&1 & echo $!`
 	echo "PID: ${PID}"
 
         if [ -z $PID ]; then
