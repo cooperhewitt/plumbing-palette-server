@@ -99,24 +99,10 @@ If not set then the operating system's temporary directory will be used.
 
 A comma-separate list of valid file extensions for processing.
 
-## Dependencies
+## See also
 
-### Things you'll need to install yourself
-
-_Pending a proper `setup.py` file._
-
-* [Flask](http://flask.pocoo.org/)
-* [Flask-Cors](https://pypi.python.org/pypi/Flask-Cors/)
-
-### Things that come pre-bundled
-
-_The following are required but are available as libraries local to the server itself if not already pre-installed._
-
-* [cooperhewitt.flask.http_pony](https://github.com/cooperhewitt/py-cooperhewitt-flask)
-* [cooperhewitt.swatchbook](https://github.com/cooperhewitt/py-cooperhewitt-swatchbook)
-* [RoyGBiv](https://pypi.python.org/pypi/RoyGBiv/)
-
-## To do:
-
-* A proper `setup.py` file
-
+* http://flask.pocoo.org/
+* https://pypi.python.org/pypi/Flask-Cors/
+* https://pypi.python.org/pypi/RoyGBiv/
+* https://github.com/cooperhewitt/py-cooperhewitt-flask
+* https://github.com/cooperhewitt/py-cooperhewitt-swatchbook

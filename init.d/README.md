@@ -1,18 +1,18 @@
-# Running palette-server using gunicorn and init.d
+# Running palette-server using init.d
 
-**This is from an older release. The basics are correct, but the details still need updating.** 
+## gunicorn
 
 _This assumes a Unix/Linux system. The following instructions do not apply for OS X or Windows._
 
 First create local copies of the sample config file (for gunicorn) and shell scripts (for init.d)
 
 	$> cd init.d      
-	$> cp palette-server.cfg.example palette-server.cfg
-	$> cp palette-server.sh.example palette-server.sh
+	$> cp gunicorn-palette-server.cfg.example gunicorn-palette-server.cfg
+	$> cp gunicorn-palette-server.sh.example gunicorn-palette-server.sh
 
-## palette-server.cfg
+### gunicorn-palette-server.cfg
  
-You will need to update `palette-server.cfg` with the relevant paths and other configurations specific to your setup. This is what the sample config file looks like:
+You will need to update `gunicorn-palette-server.cfg` with the relevant paths and other configurations specific to your setup. This is what the sample config file looks like:
 
 	# http://gunicorn-docs.readthedocs.org/en/latest/configure.html#configuration-file
 
@@ -22,35 +22,36 @@ You will need to update `palette-server.cfg` with the relevant paths and other c
 	workers = multiprocessing.cpu_count() * 2 + 1
 	worker_class = "egg:gunicorn#gevent"
 
-	# These are things you might need to change, in particular `images` and `chdir`
-	# which are where to look for images and where to look for the server code (to
-	# be run by gunicorn) respectively.
+	# Server configs - adjust to taste
 
 	bind = '127.0.0.1:8228'
-	chdir = '/usr/local/palette-server/flask'
+	chdir = '/usr/local/bin'
 	user = 'www-data'
-	images = '/where/to/look/for/images'
 
-	os.environ['PALETTE_SERVER_IMAGE_ROOT'] = images
+	# All other user-specific configs
 
-## palette-server.sh
+	os.environ['PALETTE_SERVER_CONFIG'] = '/path/to/server.cfg'
 
-You will need to update `palette-server.sh` to point to the correct path for your config file that you've just edited. The relevant bit is:
+See the part where you are assigning `os.environ['PALETTE_SERVER_CONFIG']` ? That's the config file [described in main README.md document](../README.md#config).
 
-	PALETTE_SERVER_CONFIG='/usr/local/palette-server/init.d/palette-server.cfg'
+### gunicorn-palette-server.sh
+
+You will need to update `palette-server.sh` to point to the correct path for the _gunicorn_ config file that you've just edited. The relevant bit is:
+
+	PALETTE_SERVER_CONFIG='/usr/local/plumbing-palette-server/init.d/gunicorn-palette-server.cfg'
 
 ## init.d
 
 Link your init.d shell script in to `/etc/init.d` and tell the operating system to make sure it runs when the machine starts up:
 
-	$> sudo ln -s /usr/local/palette-server/init.d/palette-server.sh /etc/init.d/palette-server.sh
-	$> sudo update-rc.d palette-server.sh defaults
+	$> sudo ln -s /usr/local/plumbing-palette-server/init.d/gunicorn-palette-server.sh /etc/init.d/gunicorn-palette-server.sh
+	$> sudo update-rc.d gunicorn-plumbing-palette-server.sh defaults
 
 You can run the server in debug-mode like:
 
-	$> sudo /etc/init.d/palette-server.sh debug
+	$> sudo /etc/init.d/gunicorn-palette-server.sh debug
 
 Otherwise all the usual `/etc/init.d` conventions apply:
 
-	$> sudo /etc/init.d/palette-server.sh start
-	$> sudo /etc/init.d/palette-server.sh stop
+	$> sudo /etc/init.d/gunicorn-palette-server.sh start
+	$> sudo /etc/init.d/gunicorn-palette-server.sh stop

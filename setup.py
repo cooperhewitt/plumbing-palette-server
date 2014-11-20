@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(name='plumbing-palette-server',
       version='0.2',
-      description='',
+      description='A Flask based HTTP pony for extracting colours from images',
       author='Cooper Hewitt Smithsonian Design Museum',
       url='https://github.com/cooperhewitt/plumbing-palette-server',
       requires=[
@@ -21,5 +21,5 @@ setup(name='plumbing-palette-server',
       scripts=[
           'scripts/palette-server.py',
       ],
-      download_url='',
+      download_url='https://github.com/cooperhewitt/plumbing-palette-server/tarball/master#egg=0.2',
       license='BSD')
