@@ -8,6 +8,8 @@ A simple HTTP pony server for doing colour extraction.
    
 ## Example
 
+The `setup.py` script will install palette-server.py in `/usr/local/bin` (or your operating system's equivalent) but you can also run it directly like this:
+
 	python ./scripts/palette-server.py -c server.cfg
 	INFO:werkzeug: * Running on http://127.0.0.1:5000/
 
