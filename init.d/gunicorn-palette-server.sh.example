@@ -17,9 +17,9 @@ PIDFILE=/var/run/palette-server.pid
 case $1 in
     debug)
         echo "Starting palette server (in debug mode)"
-	echo sudo $GUNICORN $GUNICORN_OPTS server:app
+	echo sudo $GUNICORN $GUNICORN_OPTS palette-server:app
 
-	sudo $GUNICORN $GUNICORN_OPTS server:app
+	sudo $GUNICORN $GUNICORN_OPTS palette-server:app
 
         ;;
     start)
