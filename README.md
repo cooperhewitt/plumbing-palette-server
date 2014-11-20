@@ -1,6 +1,6 @@
 # plumbing-palette-server
 
-A simple HTTP pony server for doing colour extraction. THIS IS NOT READY FOR USE YET.
+A simple HTTP pony server for doing colour extraction.
 
 ## Install
 
