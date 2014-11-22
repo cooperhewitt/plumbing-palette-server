@@ -18,7 +18,7 @@ def ping():
     return flask.jsonify({'stat': 'ok'})
 
 @app.route('/extract/roygbiv/<reference>', methods=['GET', 'POST'])
-@cross_origin(methods=['GET'])
+@cross_origin(methods=['GET', 'POST'])
 def extract_roygbiv(reference):
 
     try:
@@ -28,6 +28,7 @@ def extract_roygbiv(reference):
             path = http_pony.get_local_path(app)
 
     except Exception, e:
+
         logging.error(e)
         flask.abort(400)
 
