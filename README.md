@@ -1,6 +1,6 @@
 # plumbing-palette-server
 
-A simple HTTP pony server for doing colour extraction.
+A simple Flask-based HTTP pony server for extracting colours from images.
 
 ## Install
 
@@ -18,6 +18,8 @@ Or:
 	setenv PALETTE_SERVER_CONFIG server.cfg
 	python ./scripts/palette-server.py
 	INFO:werkzeug: * Running on http://127.0.0.1:5000/
+
+You can also run `palette-server` from any WSGI-compliant container-server-thing-y. Consult the [init.d folder](init.d) for an example of how to use `palette-server` with [gunicorn](http://gunicorn.org).
 
 ## Endpoints
 

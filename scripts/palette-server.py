@@ -6,10 +6,8 @@ import logging
 import flask
 from flask_cors import cross_origin 
 
-import roygbiv
-
-import cooperhewitt.swatchbook as swatchbook
 import cooperhewitt.flask.http_pony as http_pony
+import cooperhewitt.roboteyes.colors.palette as palette
 
 app = http_pony.setup_flask_app('PALETTE_SERVER')
 
@@ -36,7 +34,7 @@ def extract_roygbiv(reference):
     ok = True
 
     try:
-        rsp = _extract(path, reference)
+        rsp = palette.extract_roygbiv(path, reference)
     except Exception, e:
         logging.error("Unable to extract colors, because %s" % e)
         ok = False
@@ -48,30 +46,6 @@ def extract_roygbiv(reference):
         flask.abort(500)
 
     return flask.jsonify(**rsp)
-
-def _extract(path, reference):
-
-    logging.debug("get palette for %s, with %s" % (path, reference))
-
-    ref = swatchbook.load_palette(reference)
-
-    roy = roygbiv.Roygbiv(path)
-    average = roy.get_average_hex()
-    palette = roy.get_palette_hex()
-
-    def prep(hex):
-        c_hex, c_name = ref.closest(hex)        
-        return {'color': hex, 'closest': c_hex}
-
-    average = prep(average)
-    palette = map(prep, palette)
-        
-    return {
-        'reference-closest': reference,
-        'average': average,
-        'palette': palette
-    }
-
     
 if __name__ == '__main__':
 
