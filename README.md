@@ -81,7 +81,7 @@ file](https://en.wikipedia.org/wiki/INI_file).
 
 #### port
 
-The Unix TCP port you want your Flask server to listen on.
+The TCP port you want your Flask server to listen on.
 
 ### [http_pony]
 
