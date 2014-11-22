@@ -1,6 +1,6 @@
 # plumbing-palette-server
 
-A simple Flask-based HTTP pony server for extracting colours from images.
+A simple Flask-based HTTP pony server for extracting colors from images.
 
 ## Install
 
