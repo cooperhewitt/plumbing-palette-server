@@ -1,0 +1,7 @@
+[flask]
+port=8229
+
+[http_pony]
+local_path_root=/usr/local/images
+upload_path_root=
+allowed_extensions=jpg,jpeg,png
